@@ -110,7 +110,7 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
         $result = $product->delete();
         if ($result == 1) {
-            echo "The product with the code". $product->productcode ." has been successfully deleted !";
+            echo "The product with the code ". $product->productcode ." has been successfully deleted !";
         }
         else{
             echo "An error occured... Please try later.";

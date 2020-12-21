@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/products/home', function () {
+    return view('homePage');
+});
+
 Route::get('/addProducts', function(){
     $product = Product::create([
         'productcode' => 'CODE-001',
