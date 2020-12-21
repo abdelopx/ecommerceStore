@@ -16,6 +16,8 @@ class ProductsController extends Controller
     public function index()
     {
         //
+        $products = Product::all();
+        return view('Products.index', compact('products'));
     }
 
     /**
@@ -63,6 +65,8 @@ class ProductsController extends Controller
     public function show($id)
     {
         //
+        $products = Product::findOrFail($id);
+        return view('Products.show', compact('products'));
     }
 
     /**
@@ -74,6 +78,8 @@ class ProductsController extends Controller
     public function edit($id)
     {
         //
+        $products = Product::findOrFail($id);
+        return view('Products.edit', compact('products'));
     }
 
     /**
@@ -86,6 +92,10 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $products = Product::findOrFail($id);
+        $products->update($request->all());
+
+        return redirect('/products');
     }
 
     /**
@@ -97,5 +107,13 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+        $product = Product::findOrFail($id);
+        $result = $product->delete();
+        if ($result == 1) {
+            echo "The product with the code". $product->productcode ." has been successfully deleted !";
+        }
+        else{
+            echo "An error occured... Please try later.";
+        }
     }
 }
