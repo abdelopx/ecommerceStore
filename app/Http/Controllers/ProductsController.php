@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order_detail;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProductsController extends Controller
@@ -77,7 +80,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        
         $products = Product::findOrFail($id);
         return view('Products.edit', compact('products'));
     }
@@ -115,5 +118,35 @@ class ProductsController extends Controller
         else{
             echo "An error occured... Please try later.";
         }
+    }
+
+    public function addOrder($id)
+    {
+        $products = Product::findOrFail($id);
+        $user = Auth::user();
+
+        $order = Order::create([
+            'order_id' => 2,
+            'user_id'=>$user->id,
+            'order_date'=>'2020/12/20',
+            'order_status'=>'T',
+            'shipping_address'=>$user->shipping_address
+        ]);
+
+
+        //return $order->shipping_address;
+
+        $order_details = Order_detail::create([
+            'order_id'=> $order->order_id,
+            'order_details_id'=>2,
+            'o_productcode'=> $products->productcode,
+            'quantity' => 1,
+            'unitprice'=> $products->price,
+            'discount' => $products->discount
+        ]);
+
+        return $products->all();
+
+        
     }
 }

@@ -16,7 +16,9 @@
 </ul>
 
 <a href="{{route('products.edit',$products->productcode)}}">Edit the product</a>
-    
+<a href="{{route('products.addOrder',$products->productcode)}}">Buy the product</a>
+
+
 
 
 

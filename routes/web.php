@@ -16,6 +16,11 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
+Route::get('products/{product}/addOrder','App\Http\Controllers\ProductsController@addOrder')->name('products.addOrder');
+Route::resource('products', 'App\Http\Controllers\ProductsController');
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,21 +29,6 @@ Route::get('/products/home', function () {
     return view('homePage');
 });
 
-Route::get('/addProducts', function(){
-    $product = Product::create([
-        'productcode' => 'CODE-001',
-        'description' => 'Dell Latitude',
-        'indate' => '2020-12-20',
-        'quantityonhand'=>20,
-        'price' => 4999.99,
-        'discount'=> 0.20,
-        'supplier'=> 'Electronic'
-    ]);
-});
-
-Route::resource('/products', 'App\Http\Controllers\ProductsController');
-
-
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -46,3 +36,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+Route::resource('/orders', 'App\Http\Controllers\OrdersController');
+Route::resource('/order_detail', 'App\Http\Controllers\OrderDetailsController');
