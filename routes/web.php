@@ -25,7 +25,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products/home', function () {
+Route::get('/homePage', function () {
     return view('homePage');
 });
 
@@ -42,3 +42,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('/orders', 'App\Http\Controllers\OrdersController');
 Route::resource('/order_detail', 'App\Http\Controllers\OrderDetailsController');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

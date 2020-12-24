@@ -14,6 +14,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.1",
         "laravelcollective/html": "^6.2"
     },
     "require-dev": {
@@ -22,7 +23,6 @@
         "kitloong/laravel-migrations-generator": "^4.4",
         "laracademy/generators": "^3.0",
         "laravel/sail": "^0.0.5",
-        "laravel/ui": "^3.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"

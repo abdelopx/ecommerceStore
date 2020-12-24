@@ -21,9 +21,11 @@
         </div>
         <nav>
             <ul>
-                <li><a href="http://localhost/MyStore/public/products/home">Home</a></li>
-                <li><a>Products</a></li>
+                <li><a href="http://localhost/MyStore/public/homePage">Home</a></li>
+                <li><a href="http://localhost/MyStore/public/products">Products</a></li>
                 <li><a>About</a></li>
+                <li><a href="http://localhost/MyStore/public/login">Login</a></li>
+                <li><a href="http://localhost/MyStore/public/register">Register</a></li>
                 <li><a href="{{ route('login') }}">Account</a></li>
             </ul>
         </nav>

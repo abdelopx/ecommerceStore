@@ -1,4 +1,5 @@
-@extends ('layouts/app')
+@extends ('layouts/authapp')
+
 
 @section('content')
 <h1>Add product panel :</h1>
