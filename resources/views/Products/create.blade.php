@@ -41,6 +41,9 @@
 
     {!! Form::label('supplier', 'Supplier')!!}
     {!! Form::text('supplier', null, ['class' => 'form-control'])!!}
+
+    {!! Form::label('path', 'Image name if any')!!}
+    {!! Form::text('path', null, ['class' => 'form-control'])!!}
     
     {!! Form::submit('Add product', ['class' => 'btn btn-primary']) !!}
 

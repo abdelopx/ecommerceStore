@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Order_detail;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class ProductsController extends Controller
@@ -18,7 +19,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        
         $products = Product::all();
         return view('Products.index', compact('products'));
     }
@@ -119,7 +120,6 @@ class ProductsController extends Controller
             echo "An error occured... Please try later.";
         }
     }
-
     public function addOrder($id)
     {
         $products = Product::findOrFail($id);
@@ -147,6 +147,22 @@ class ProductsController extends Controller
 
         return $products->all();
 
-        
     }
+
+    public function allProducts() {
+
+        $products = DB::table('products')->paginate(8);
+        return view('Products.list', compact('products'));
+
+    }
+    public function singleProduct($id) {
+
+        $products = Product::findOrFail($id);
+        $productsAll = DB::table('products')->where('description', '!=' , $products->description)->paginate(4);
+        
+        
+        return view('Products.singleProduct',compact('products','productsAll'));
+
+    }
+    
 }

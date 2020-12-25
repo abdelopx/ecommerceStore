@@ -11,7 +11,7 @@ class Product extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $primaryKey = 'productcode';
-    protected $fillable = ['productcode','description','indate','quantityonhand','price','discount','supplier'];
+    protected $fillable = ['productcode','description','indate','quantityonhand','price','discount','supplier','path'];
 
 
 

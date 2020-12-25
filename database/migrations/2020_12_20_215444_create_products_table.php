@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price')->nullable();
             $table->decimal('discount', 2)->default(0.00);
             $table->string('supplier', 20);
+            $table->string('path')->nullable();
         });
     }
 

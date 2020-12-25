@@ -15,8 +15,10 @@ use App\Http\Controllers\ProductsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('products/singleProduct/{product}','App\Http\Controllers\ProductsController@singleProduct')->name('products.singleProduct');
+Route::get('products/allProducts','App\Http\Controllers\ProductsController@allProducts')->name('products.allProducts');
 Route::get('products/{product}/addOrder','App\Http\Controllers\ProductsController@addOrder')->name('products.addOrder');
+
 Route::resource('products', 'App\Http\Controllers\ProductsController');
 
 
@@ -24,10 +26,14 @@ Route::resource('products', 'App\Http\Controllers\ProductsController');
 Route::get('/', function () {
     return view('welcome');
 });
+//Route::get('/ProductsTest', function () {
+ //   return view('Products.list');
+//});
 
 Route::get('/homePage', function () {
     return view('homePage');
 });
+
 
 
 
