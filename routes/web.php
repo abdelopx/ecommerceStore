@@ -34,6 +34,10 @@ Route::get('/homePage', function () {
     return view('homePage');
 });
 
+Route::get('/success', function () {
+    return view('Products.successOrder');
+});
+
 
 
 

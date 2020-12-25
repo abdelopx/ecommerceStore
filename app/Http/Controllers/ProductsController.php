@@ -8,6 +8,7 @@ use App\Models\Order_detail;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class ProductsController extends Controller
@@ -81,7 +82,6 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        
         $products = Product::findOrFail($id);
         return view('Products.edit', compact('products'));
     }
@@ -114,39 +114,41 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
         $result = $product->delete();
         if ($result == 1) {
+            
             echo "The product with the code ". $product->productcode ." has been successfully deleted !";
         }
         else{
             echo "An error occured... Please try later.";
         }
     }
-    public function addOrder($id)
-    {
+    public function addOrder($id) {
+    
         $products = Product::findOrFail($id);
         $user = Auth::user();
+        
+        if ($products->quantityonhand == 0){
+            return view('Products.errorStock');
+        }
+        else {
+        DB::update('update products set quantityonhand = ? where productcode = ?', [$products->quantityonhand-1, $products->productcode]);
+        }
 
         $order = Order::create([
-            'order_id' => 2,
             'user_id'=>$user->id,
-            'order_date'=>'2020/12/20',
+            'order_date'=>Carbon::today()->toDateString(),
             'order_status'=>'T',
-            'shipping_address'=>$user->shipping_address
+            'shipping_address'=>'Main gate'
         ]);
-
-
         //return $order->shipping_address;
 
         $order_details = Order_detail::create([
             'order_id'=> $order->order_id,
-            'order_details_id'=>2,
             'o_productcode'=> $products->productcode,
             'quantity' => 1,
             'unitprice'=> $products->price,
             'discount' => $products->discount
         ]);
-
-        return $products->all();
-
+            return view('Products.successOrder', compact('user'));
     }
 
     public function allProducts() {

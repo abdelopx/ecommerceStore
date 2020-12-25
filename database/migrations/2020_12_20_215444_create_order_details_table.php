@@ -15,12 +15,12 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->integer('order_id')->unique('order_details_order_id_key');
-            $table->smallInteger('order_details_id');
+            $table->increments('order_details_id')->startingvalue(1);
             $table->string('o_productcode', 50);
             $table->smallInteger('quantity')->default(1);
             $table->decimal('unitprice');
             $table->decimal('discount', 2);
-            $table->primary(['order_id', 'order_details_id', 'o_productcode'], 'order_details_pkey');
+            //$table->primary(['order_id', 'order_details_id', 'o_productcode'], 'order_details_pkey');
         });
     }
 

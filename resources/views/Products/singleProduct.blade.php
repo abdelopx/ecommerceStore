@@ -41,7 +41,7 @@
             <P>Home / Products / {{$products->description}}</P>
             <h1>{{$products->description}}</h1>
             <h4>{{$products->price}} DHS</h4>
-            <a href="" class="btn">Buy</a>
+            <a href="{{route('products.addOrder',$products->productcode)}}" class="btn">Buy</a>
             <h3>Policy disclaimer</h3>
             <p>All the products that we sell come from certified suppliers. If you did not like the product for some reason you can resend it to us to receive a full refund on it. To receive a full refund the product must be in his orignal case and was never opened.</p>
         </div>

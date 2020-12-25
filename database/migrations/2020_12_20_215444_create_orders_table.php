@@ -14,7 +14,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->integer('order_id')->primary('orders_pkey');
+            $table->increments('order_id')->startingvalue(1);
             $table->integer('user_id');
             $table->date('order_date');
             $table->boolean('order_status')->nullable();

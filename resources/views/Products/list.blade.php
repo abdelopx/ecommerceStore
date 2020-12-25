@@ -42,7 +42,7 @@
     <h2 class="title">Featured Products</h2>
     <div class="row">
         @foreach($products as $product)
-        <div class="col-4"> <a href="{{route('products.singleProduct',$product->productcode)}}"><img src="http://localhost/MyStore/public/images/{{$product->path}}"><h4>{{$product->description}}</h4></a><p>{{$product->price}}</p></div>
+        <div class="col-4"> <a href="{{route('products.singleProduct',$product->productcode)}}"><img src="http://localhost/MyStore/public/images/{{$product->path}}"><h4>{{$product->description}}</h4></a><p>{{$product->price}} DHS</p></div>
     @endforeach      
     </div>
     <h2>{{ $products->links() }}</h2>
