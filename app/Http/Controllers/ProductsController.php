@@ -2,17 +2,28 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order_detail;
 use App\Models\Order;
+use App\Models\Invoice;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Http\Controllers\InvoicesController;
 
 
 class ProductsController extends Controller
 {
+
+    protected $InvoicesController;
+    public function __construct(InvoicesController $InvoicesController)
+    {
+        $this->InvoicesController = $InvoicesController;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -148,7 +159,21 @@ class ProductsController extends Controller
             'unitprice'=> $products->price,
             'discount' => $products->discount
         ]);
-            return view('Products.successOrder', compact('user'));
+            $response = $this->InvoicesController->index($user,$products);
+            DB::insert('insert into invoices (invoicenumber, order_id, order_details_id, inv_format,productcode,date,quantity,unitprice,discount_rate,price) 
+            values (?,?,?,?,?,?,?,?,?,?)', [$order->order_id,
+            $order->order_id,
+            $order_details->order_details_id,
+            'PDF',
+            $products->productcode,
+            $order->order_date,
+            1,
+            $products->price,
+            $products->discount,
+            $products->price
+            ]);
+            return $response;
+            //return view('Products.successOrder', compact('user','response'));
     }
 
     public function allProducts() {
@@ -157,6 +182,7 @@ class ProductsController extends Controller
         return view('Products.list', compact('products'));
 
     }
+
     public function singleProduct($id) {
 
         $products = Product::findOrFail($id);
@@ -166,5 +192,14 @@ class ProductsController extends Controller
         return view('Products.singleProduct',compact('products','productsAll'));
 
     }
-    
+
+    public function sendemail() {
+    $to_name = 'Abdel';
+    $to_email = 'abdoukop@gmail.com';
+    $data = array('name'=>"Abdellah berni", "body" => "Test mail");
+    Mail::send('emails', $data, function($message) use ($to_name, $to_email) {
+    $message->to($to_email, $to_name)->subject('Artisans Web Testing Mail');
+    $message->from('mystorepcreplier@gmail.com','MyStorePc');
+    });
+}
 }

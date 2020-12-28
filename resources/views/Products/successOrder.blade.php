@@ -1,3 +1,4 @@
+@extends ('layouts/app')
 <html>
   <head>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
@@ -44,6 +45,9 @@
         <h1>Thank you!</h1> 
         <p>We received your purchase request;<br/> You will receive your product(s) in next 1-2 business days to the below shipping address!</p>
         <h3>{{$user->shipping_address}}</h3>
+        <form method="get" action="/MyStore/public/homePage">
+          <button url class="btn" style="color:#ff523b">Return shopping</button>
+      </form>
       </div>
     </body>
 </html>

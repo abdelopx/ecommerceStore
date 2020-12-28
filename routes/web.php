@@ -15,10 +15,11 @@ use App\Http\Controllers\ProductsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('products/sendemail','App\Http\Controllers\ProductsController@sendemail')->name('products.sendemail');
 Route::get('products/singleProduct/{product}','App\Http\Controllers\ProductsController@singleProduct')->name('products.singleProduct');
 Route::get('products/allProducts','App\Http\Controllers\ProductsController@allProducts')->name('products.allProducts');
 Route::get('products/{product}/addOrder','App\Http\Controllers\ProductsController@addOrder')->name('products.addOrder');
-
+Route::resource('invoices', 'App\Http\Controllers\InvoicesController');
 Route::resource('products', 'App\Http\Controllers\ProductsController');
 
 

@@ -22,7 +22,7 @@
         <nav>
             <ul>
                 <li><a href="http://localhost/MyStore/public/homePage">Home</a></li>
-                <li><a href="http://localhost/MyStore/public/products">Products</a></li>
+                <li><a href="http://localhost/MyStore/public/products/allProducts">Products</a></li>
                 <li><a>About</a></li>
                 <li><a href="http://localhost/MyStore/public/login">Login</a></li>
                 <li><a href="http://localhost/MyStore/public/register">Register</a></li>
